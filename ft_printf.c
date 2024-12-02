@@ -6,7 +6,7 @@
 /*   By: ybenigno <ybenigno@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:07:03 by ybenigno          #+#    #+#             */
-/*   Updated: 2024/11/29 20:15:34 by ybenigno         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:09:27 by ybenigno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ static int	ft_element(const char c, va_list args)
 	if (c == 'p')
 	{
 		count += ft_putstr("0x");
-		count += ft_putnbr_base(va_arg(args, long int), "0123456789abcdef");
-		
+		count += ft_putnbr_base_for_p(va_arg(args, unsigned long int), "0123456789abcdef");
 	}
 	if (c == 'u')
 		count += ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
@@ -62,6 +61,7 @@ int	ft_printf(const char *format, ...)
 			len += write(1, &format[i], 1);
 		i++;
 	}
+	va_end(args);
 	return (len);
 }
 
